@@ -47,6 +47,8 @@ unsigned long presstime = 0;
 
 const int eeAddress = 0;
 
+boolean noDecimals[4] = {false, false, false, false};
+
 void setup()
 {
   Serial.begin(9600);
@@ -82,6 +84,8 @@ void setup()
   {
     highscore = 0;
   }
+
+  sendString("    ", noDecimals);
 }
 
 
@@ -105,7 +109,7 @@ void loop()
     postNumber('d', false);
   }
   delay(250);*/
-  boolean noDecimals[4] = {false, false, false, false};
+  
 
   if (digitalRead(aPin) == HIGH)
   {
