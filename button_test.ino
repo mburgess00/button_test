@@ -89,56 +89,32 @@ void loop()
   //handle buttons
   if (digitalRead(aPin) == HIGH)
   {
-    postNumber(0xa, false);
+    postNumber('a', false);
   }
   else if (digitalRead(bPin) == HIGH)
   {
-    postNumber(0xb, false);
+    postNumber('b', false);
   }
   else if (digitalRead(cPin) == HIGH)
   {
-    postNumber(0xc, false);
+    postNumber('c', false);
   }
   else if (digitalRead(dPin) == HIGH)
   {
-    postNumber(0xd, false);
+    postNumber('d', false);
   }
   else
   {
-    postNumber(0, false);
+    postNumber(' ', false);
   }
+  delay(100);
 }
 
-void updateDisplay(int curtime, int curscore)
-{
-  showNumber(curscore);
-  showNumber(curtime);
-}
 
-//Takes a number and displays 2 numbers. Displays absolute value (no negatives)
-void showNumber(float value)
-{
-  int number = abs(value); //Remove negative signs and any decimals
 
-  //Serial.print("number: ");
-  //Serial.println(number);
-
-  for (byte x = 0 ; x < 2 ; x++)
-  {
-    int remainder = number % 10;
-
-    postNumber(remainder, false);
-
-    number /= 10;
-  }
-
-  //Latch the current segment data
-  digitalWrite(segmentLatch, LOW);
-  digitalWrite(segmentLatch, HIGH); //Register moves storage register on the rising edge of RCK
-}
 
 //Given a number, or '-', shifts it out to the display
-void postNumber(byte number, boolean decimal)
+void postNumber(char digit, boolean decimal)
 {
   //    -  A
   //   / / F/B
@@ -157,18 +133,18 @@ void postNumber(byte number, boolean decimal)
 
   byte segments;
 
-  switch (number)
+  switch (digit)
   {
-    case 1: segments = b | c; break;
-    case 2: segments = a | b | d | e | g; break;
-    case 3: segments = a | b | c | d | g; break;
-    case 4: segments = f | g | b | c; break;
-    case 5: segments = a | f | g | c | d; break;
-    case 6: segments = a | f | g | e | c | d; break;
-    case 7: segments = a | b | c; break;
-    case 8: segments = a | b | c | d | e | f | g; break;
-    case 9: segments = a | b | c | d | f | g; break;
-    case 0: segments = a | b | c | d | e | f; break;
+    case '1': segments = b | c; break;
+    case '2': segments = a | b | d | e | g; break;
+    case '3': segments = a | b | c | d | g; break;
+    case '4': segments = f | g | b | c; break;
+    case '5': segments = a | f | g | c | d; break;
+    case '6': segments = a | f | g | e | c | d; break;
+    case '7': segments = a | b | c; break;
+    case '8': segments = a | b | c | d | e | f | g; break;
+    case '9': segments = a | b | c | d | f | g; break;
+    case '0': segments = a | b | c | d | e | f; break;
     case ' ': segments = 0; break;
     case 'a': segments = a | b | c | e | f | g; break;
     case 'b': segments = c | d | e | f | g; break;
