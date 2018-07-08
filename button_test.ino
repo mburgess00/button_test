@@ -123,8 +123,8 @@ void loop()
   {
     str[0] = ' ';
     str[1] = '3';
-    str[2] = timer2;
-    str[3] = timer1;
+    str[2] = timer1;
+    str[3] = timer2;
     sendString(str, noDecimals);
     tone(buzzer, 1000, 250);
     delay(750);
@@ -150,8 +150,8 @@ void loop()
     timer1 = char(remainder);
     temptimer = timer / 10;
     timer2 = char(temptimer);
-    str[2] = timer2;
-    str[3] = timer1;
+    str[2] = timer1;
+    str[3] = timer2;
     sendString(str, noDecimals);
   }
 
