@@ -68,9 +68,10 @@ void setup()
 
   //buzzer
   pinMode(buzzer, OUTPUT);
-  digitalWrite(buzzer, HIGH);
-  delay(250);
-  digitalWrite(buzzer, LOW);
+  //digitalWrite(buzzer, HIGH);
+  //delay(250);
+  //digitalWrite(buzzer, LOW);
+  tone(buzzer, 2500, 250);
 
   //reset
   pinMode(resetButton, INPUT_PULLUP);
