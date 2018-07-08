@@ -131,6 +131,9 @@ void postNumber(char digit, boolean decimal)
 #define g  1<<2
 #define dp 1<<7
 
+  Serial.print("sending the following character: ");
+  Serial.println(digit);
+
   byte segments;
 
   switch (digit)
