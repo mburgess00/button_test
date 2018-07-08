@@ -85,7 +85,7 @@ void setup()
     highscore = 0;
   }
 
-  sendString("    ", noDecimals);
+  sendString(' ', ' ', ' ', ' ', noDecimals);
 }
 
 
@@ -121,24 +121,16 @@ void loop()
 
   if (digitalRead(aPin) == HIGH)
   {
-    str[0] = ' ';
-    str[1] = '3';
-    str[2] = timer1;
-    str[3] = timer2;
-    sendString(str, noDecimals);
+    sendString(' ', '3', timer2, timer1, noDecimals);
     tone(buzzer, 1000, 250);
     delay(750);
-    str[1] = '2';
-    sendString(str, noDecimals);
+    sendString(' ', '2', timer2, timer1, noDecimals);
     tone(buzzer, 1000, 250);
     delay(750);
-    str[1] = '1';
-    sendString(str, noDecimals);
+    sendString(' ', '1', timer2, timer1, noDecimals);
     tone(buzzer, 1000, 250);
     delay(750);
-    str[0] = 'o';
-    str[1] = 'g';
-    sendString(str, noDecimals);
+    sendString('g', 'o', timer2, timer1, noDecimals);
     tone(buzzer, 1200, 1000);
   }
 
@@ -150,21 +142,19 @@ void loop()
     timer1 = char(remainder);
     temptimer = timer / 10;
     timer2 = char(temptimer);
-    str[2] = timer1;
-    str[3] = timer2;
-    sendString(str, noDecimals);
+    sendString(' ', ' ', timer2, timer1, noDecimals);
   }
 
   
 }
 
 
-void sendString(char string[4], boolean decimals[4])
+void sendString(char a, char b, char c, char d, boolean decimals[4])
 {
-  for (byte x = 0; x < 4; x++)
-  {
-    postChar(string[x], decimals[x]);
-  }
+  postChar(d, decimals[3]);
+  postChar(c, decimals[2]);
+  postChar(b, decimals[1]);
+  postChar(a, decimals[0]);
   digitalWrite(segmentLatch, LOW);
   digitalWrite(segmentLatch, HIGH);  
 }
