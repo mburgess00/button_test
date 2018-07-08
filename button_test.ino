@@ -109,10 +109,10 @@ void loop()
     postNumber('d', false);
     buttonpress = true;
   }
-  if (buttonpress == false)
-  {
-    postNumber(' ', false);
-  }
+  //if (buttonpress == false)
+  //{
+  //  postNumber(' ', false);
+  //}
   delay(250);
 }
 
@@ -163,6 +163,8 @@ void postNumber(char digit, boolean decimal)
   }
 
   if (decimal) segments |= dp;
+
+  Serial.println(segments);
 
   //Clock these bits out to the drivers
   for (byte x = 0 ; x < 8 ; x++)
