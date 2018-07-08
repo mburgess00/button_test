@@ -109,22 +109,52 @@ void loop()
     postNumber('d', false);
   }
   delay(250);*/
-  
+
+  char timer1 = ' ';
+  char timer2 = ' ';
+  int remainder = timer % 10;
+  timer1 = char(remainder);
+  int temptimer = timer / 10;
+  timer2 = char(temptimer);
+
+  char str[4] = "    ";
 
   if (digitalRead(aPin) == HIGH)
   {
-    sendString("   3", noDecimals);
+    str[0] = ' ';
+    str[1] = '3';
+    str[2] = timer2;
+    str[3] = timer1;
+    sendString(str, noDecimals);
     tone(buzzer, 1000, 250);
     delay(750);
-    sendString("   2", noDecimals);
+    str[1] = '2';
+    sendString(str, noDecimals);
     tone(buzzer, 1000, 250);
     delay(750);
-    sendString("   1", noDecimals);
+    str[1] = '1';
+    sendString(str, noDecimals);
     tone(buzzer, 1000, 250);
     delay(750);
-    sendString("  og", noDecimals);
+    str[0] = 'o';
+    str[1] = 'g';
+    sendString(str, noDecimals);
     tone(buzzer, 1200, 1000);
   }
+
+  while (timer > 0)
+  {
+    delay(1000);
+    timer--;
+    remainder = timer % 10;
+    timer1 = char(remainder);
+    temptimer = timer / 10;
+    timer2 = char(temptimer);
+    str[2] = timer2;
+    str[3] = timer1;
+    sendString(str, noDecimals);
+  }
+
   
 }
 
