@@ -121,7 +121,7 @@ void loop()
   if (digitalRead(aPin) == HIGH)
   {
     Serial.println("got the a pin!");
-    sendString(' ', '3', timer2, timer1, noDecimals);
+    sendString(' ', '3', char(timer2), char(timer1), noDecimals);
     tone(buzzer, 1000, 250);
     delay(750);
     sendString(' ', '2', timer2, timer1, noDecimals);
