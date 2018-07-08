@@ -114,13 +114,13 @@ void loop()
   if (digitalRead(aPin) == HIGH)
   {
     sendString("3   ", noDecimals);
-    //tone(buzzer, 1000, 250);
+    tone(buzzer, 1000, 250);
     delay(750);
     sendString("2   ", noDecimals);
-    //tone(buzzer, 1000, 250);
+    tone(buzzer, 1000, 250);
     delay(750);
     sendString("1   ", noDecimals);
-    //tone(buzzer, 1000, 250);
+    tone(buzzer, 1000, 250);
     delay(750);
     sendString("g0  ", noDecimals);
     tone(buzzer, 1200, 1000);
