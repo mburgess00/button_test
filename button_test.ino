@@ -136,6 +136,8 @@ void loop()
     while (timer > 0)
     {
       delay(1000);
+      Serial.print("timer=");
+      Serial.println(timer);
       timer--;
       remainder = timer % 10;
       timer1 = char(remainder);
@@ -178,8 +180,8 @@ void postChar(char digit, boolean decimal)
 #define g  1<<2
 #define dp 1<<7
 
-  Serial.print("sending the following character: ");
-  Serial.println(digit);
+  //Serial.print("sending the following character: ");
+  //Serial.println(digit);
 
   byte segments;
 
