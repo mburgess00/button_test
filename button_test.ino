@@ -122,7 +122,7 @@ void loop()
     sendString("   1", noDecimals);
     tone(buzzer, 1000, 250);
     delay(750);
-    sendString("  0g", noDecimals);
+    sendString("  og", noDecimals);
     tone(buzzer, 1200, 1000);
   }
   
@@ -183,6 +183,7 @@ void postChar(char digit, boolean decimal)
     case 'f': segments = a | e | f | g; break;
     case 'g': segments = a | b | c | d | f | g; break;
     case 'h': segments = c | e | f | g; break;
+    case 'o': segments = a | b | f | g; break;
     case '-': segments = g; break;
     default: segments = 0;
   }
