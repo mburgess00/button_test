@@ -113,16 +113,16 @@ void loop()
 
   if (digitalRead(aPin) == HIGH)
   {
-    sendString("3   ", noDecimals);
+    sendString("   3", noDecimals);
     tone(buzzer, 1000, 250);
     delay(750);
-    sendString("2   ", noDecimals);
+    sendString("   2", noDecimals);
     tone(buzzer, 1000, 250);
     delay(750);
-    sendString("1   ", noDecimals);
+    sendString("   1", noDecimals);
     tone(buzzer, 1000, 250);
     delay(750);
-    sendString("g0  ", noDecimals);
+    sendString("  0g", noDecimals);
     tone(buzzer, 1200, 1000);
   }
   
@@ -131,7 +131,7 @@ void loop()
 
 void sendString(char string[4], boolean decimals[4])
 {
-  for (byte x = 3; x >= 0; x--)
+  for (byte x = 0; x < 4; x++)
   {
     postChar(string[x], decimals[x]);
   }
