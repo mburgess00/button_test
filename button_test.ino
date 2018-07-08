@@ -110,13 +110,13 @@ void loop()
   if (digitalRead(aPin) == HIGH)
   {
     sendString("3   ", noDecimals);
-    tone(buzzer, 1000, 250);
+    //tone(buzzer, 1000, 250);
     delay(750);
     sendString("2   ", noDecimals);
-    tone(buzzer, 1000, 250);
+    //tone(buzzer, 1000, 250);
     delay(750);
     sendString("1   ", noDecimals);
-    tone(buzzer, 1000, 250);
+    //tone(buzzer, 1000, 250);
     delay(750);
     sendString("g0  ", noDecimals);
     tone(buzzer, 1200, 1000);
@@ -127,11 +127,12 @@ void loop()
 
 void sendString(char string[4], boolean decimals[4])
 {
-  for (byte x = 0; x < 4; x++)
+  for (byte x = 3; x >= 0; x--)
   {
     postChar(string[x], decimals[x]);
   }
-  
+  digitalWrite(segmentLatch, LOW);
+  digitalWrite(segmentLatch, HIGH);  
 }
 
 //Given a number, or '-', shifts it out to the display
@@ -176,7 +177,7 @@ void postChar(char digit, boolean decimal)
     case 'd': segments = b | c | d | e | g; break;
     case 'e': segments = a | d | e | f | g; break;
     case 'f': segments = a | e | f | g; break;
-    case 'g': segments = a | c | d | e | f | g; break;
+    case 'g': segments = a | b | c | d | f | g; break;
     case 'h': segments = c | e | f | g; break;
     case '-': segments = g; break;
     default: segments = 0;
@@ -194,7 +195,5 @@ void postChar(char digit, boolean decimal)
     digitalWrite(segmentClock, HIGH); //Data transfers to the register on the rising edge of SRCK
   }
 
-  digitalWrite(segmentLatch, LOW);
-  digitalWrite(segmentLatch, HIGH);
 }
 
