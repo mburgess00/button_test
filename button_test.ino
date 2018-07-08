@@ -86,6 +86,7 @@ void setup()
   }
 
   sendString(' ', ' ', ' ', ' ', noDecimals);
+  sendString('t', 'e', '5', 't', noDecimals);
 }
 
 
