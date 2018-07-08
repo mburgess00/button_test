@@ -113,6 +113,11 @@ void loop()
   //{
   //  postNumber(' ', false);
   //}
+  if (buttonpress)
+  {
+    digitalWrite(segmentLatch, LOW);
+    digitalWrite(segmentLatch, HIGH);
+  }
   delay(250);
 }
 
