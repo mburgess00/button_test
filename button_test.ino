@@ -150,6 +150,8 @@ void loop()
 
 void sendString(char a, char b, char c, char d, boolean decimals[4])
 {
+  Serial.print("Sending ");
+  Serial.println(d + c + b + a);
   postChar(d, decimals[3]);
   postChar(c, decimals[2]);
   postChar(b, decimals[1]);
