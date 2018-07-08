@@ -124,13 +124,13 @@ void loop()
     sendString(' ', '3', (char)timer2, (char)timer1, noDecimals);
     tone(buzzer, 1000, 250);
     delay(750);
-    sendString(' ', '2', timer2, timer1, noDecimals);
+    sendString(' ', '2', (char)timer2, (char)timer1, noDecimals);
     tone(buzzer, 1000, 250);
     delay(750);
-    sendString(' ', '1', timer2, timer1, noDecimals);
+    sendString(' ', '1', (char)timer2, (char)timer1, noDecimals);
     tone(buzzer, 1000, 250);
     delay(750);
-    sendString('g', 'o', timer2, timer1, noDecimals);
+    sendString('g', 'o', (char)timer2, (char)timer1, noDecimals);
     tone(buzzer, 1200, 1000);
   
 
