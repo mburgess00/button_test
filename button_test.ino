@@ -110,17 +110,16 @@ void loop()
   }
   delay(250);*/
 
-  char timer1 = ' ';
-  char timer2 = ' ';
-  int remainder = timer % 10;
-  timer1 = char(remainder);
-  int temptimer = timer / 10;
-  timer2 = char(temptimer);
 
-  char str[4] = "    ";
+  int remainder = timer % 10;
+  char timer1 = char(remainder);
+  int temptimer = timer / 10;
+  char timer2 = char(temptimer);
+
 
   if (digitalRead(aPin) == HIGH)
   {
+    Serial.println("got the a pin!");
     sendString(' ', '3', timer2, timer1, noDecimals);
     tone(buzzer, 1000, 250);
     delay(750);
