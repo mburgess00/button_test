@@ -23,10 +23,10 @@ byte segmentLatch = 5;
 byte segmentData = 7;
 
 //Remote receiver
-byte aPin = 10;
-byte bPin = 11;
-byte cPin = 12;
-byte dPin = 13;
+byte aPin = 13;
+byte bPin = 12;
+byte cPin = 11;
+byte dPin = 10;
 
 //Buzzer
 byte buzzer = 8;
@@ -86,37 +86,22 @@ void setup()
 
 void loop()
 {
-  boolean buttonpress = false;
   //handle buttons
   if (digitalRead(aPin) == HIGH)
   {
     postNumber('a', false);
-    buttonpress = true;
   }
   if (digitalRead(bPin) == HIGH)
   {
     postNumber('b', false);
-    buttonpress = true;
-
   }
   if (digitalRead(cPin) == HIGH)
   {
     postNumber('c', false);
-    buttonpress = true;
   }
   if (digitalRead(dPin) == HIGH)
   {
     postNumber('d', false);
-    buttonpress = true;
-  }
-  //if (buttonpress == false)
-  //{
-  //  postNumber(' ', false);
-  //}
-  if (buttonpress)
-  {
-    digitalWrite(segmentLatch, LOW);
-    digitalWrite(segmentLatch, HIGH);
   }
   delay(250);
 }
@@ -178,5 +163,8 @@ void postNumber(char digit, boolean decimal)
     digitalWrite(segmentData, segments & 1 << (7 - x));
     digitalWrite(segmentClock, HIGH); //Data transfers to the register on the rising edge of SRCK
   }
+
+  digitalWrite(segmentLatch, LOW);
+  digitalWrite(segmentLatch, HIGH);
 }
 
