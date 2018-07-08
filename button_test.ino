@@ -71,7 +71,7 @@ void setup()
   //digitalWrite(buzzer, HIGH);
   //delay(250);
   //digitalWrite(buzzer, LOW);
-  tone(buzzer, 2500, 250);
+  tone(buzzer, 1200, 250);
 
   //reset
   pinMode(resetButton, INPUT_PULLUP);
@@ -88,7 +88,7 @@ void setup()
 void loop()
 {
   //handle buttons
-  if (digitalRead(aPin) == HIGH)
+  /*if (digitalRead(aPin) == HIGH)
   {
     postNumber('a', false);
   }
@@ -104,14 +104,38 @@ void loop()
   {
     postNumber('d', false);
   }
-  delay(250);
+  delay(250);*/
+  boolean noDecimals[4] = {false, false, false, false};
+
+  if (digitalRead(aPin) == HIGH)
+  {
+    sendString("3   ", noDecimals);
+    tone(buzzer, 1000, 250);
+    delay(750);
+    sendString("2   ", noDecimals);
+    tone(buzzer, 1000, 250);
+    delay(750);
+    sendString("1   ", noDecimals);
+    tone(buzzer, 1000, 250);
+    delay(750);
+    sendString("g0  ", noDecimals);
+    tone(buzzer, 1200, 1000);
+  }
+  
 }
 
 
-
+void sendString(char string[4], boolean decimals[4])
+{
+  for (byte x = 0; x < 4; x++)
+  {
+    postChar(string[x], decimals[x]);
+  }
+  
+}
 
 //Given a number, or '-', shifts it out to the display
-void postNumber(char digit, boolean decimal)
+void postChar(char digit, boolean decimal)
 {
   //    -  A
   //   / / F/B
@@ -150,7 +174,12 @@ void postNumber(char digit, boolean decimal)
     case 'b': segments = c | d | e | f | g; break;
     case 'c': segments = g | e | d; break;
     case 'd': segments = b | c | d | e | g; break;
+    case 'e': segments = a | d | e | f | g; break;
+    case 'f': segments = a | e | f | g; break;
+    case 'g': segments = a | c | d | e | f | g; break;
+    case 'h': segments = c | e | f | g; break;
     case '-': segments = g; break;
+    default: segments = 0;
   }
 
   if (decimal) segments |= dp;
