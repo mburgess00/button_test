@@ -131,19 +131,19 @@ void loop()
     delay(750);
     sendString('g', 'o', timer2, timer1, noDecimals);
     tone(buzzer, 1200, 1000);
-  }
+  
 
-  while (timer > 0)
-  {
-    delay(1000);
-    timer--;
-    remainder = timer % 10;
-    timer1 = char(remainder);
-    temptimer = timer / 10;
-    timer2 = char(temptimer);
-    sendString(' ', ' ', timer2, timer1, noDecimals);
+    while (timer > 0)
+    {
+      delay(1000);
+      timer--;
+      remainder = timer % 10;
+      timer1 = char(remainder);
+      temptimer = timer / 10;
+      timer2 = char(temptimer);
+      sendString(' ', ' ', timer2, timer1, noDecimals);
+    }
   }
-
   
 }
 
