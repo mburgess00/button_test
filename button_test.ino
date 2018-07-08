@@ -86,28 +86,34 @@ void setup()
 
 void loop()
 {
+  boolean buttonpress = false;
   //handle buttons
   if (digitalRead(aPin) == HIGH)
   {
     postNumber('a', false);
+    buttonpress = true;
   }
-  else if (digitalRead(bPin) == HIGH)
+  if (digitalRead(bPin) == HIGH)
   {
     postNumber('b', false);
+    buttonpress = true;
+
   }
-  else if (digitalRead(cPin) == HIGH)
+  if (digitalRead(cPin) == HIGH)
   {
     postNumber('c', false);
+    buttonpress = true;
   }
-  else if (digitalRead(dPin) == HIGH)
+  if (digitalRead(dPin) == HIGH)
   {
     postNumber('d', false);
+    buttonpress = true;
   }
-  else
+  if (buttonpress == false)
   {
     postNumber(' ', false);
   }
-  delay(100);
+  delay(250);
 }
 
 
