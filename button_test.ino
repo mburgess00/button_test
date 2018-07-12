@@ -5,13 +5,10 @@
  5V -> 5V (Orange)
  Power Arduino with 12V and connect to Vin -> 12V (Red)
  GND -> GND (Black)
-
  There are two connectors on the Large Digit Driver. 'IN' is the input side that should be connected to
  your microcontroller (the Arduino). 'OUT' is the output side that should be connected to the 'IN' of addtional
  digits.
-
  Each display will use about 150mA with all segments and decimal point on.
-
 */
 
 #include <EEPROM.h>
@@ -164,7 +161,7 @@ void sendString(byte a, byte b, byte c, byte d, boolean decimals[4])
 }
 
 //Given a number, or '-', shifts it out to the display
-void postChar(char digit, boolean decimal)
+void postChar(byte digit, boolean decimal)
 {
   //    -  A
   //   / / F/B
@@ -185,19 +182,21 @@ void postChar(char digit, boolean decimal)
   //Serial.println(digit);
 
   byte segments;
+  Serial.print("digit: ");
+  Serial.println(digit);
 
   switch (digit)
   {
-    case '1': segments = b | c; break;
-    case '2': segments = a | b | d | e | g; break;
-    case '3': segments = a | b | c | d | g; break;
-    case '4': segments = f | g | b | c; break;
-    case '5': segments = a | f | g | c | d; break;
-    case '6': segments = a | f | g | e | c | d; break;
-    case '7': segments = a | b | c; break;
-    case '8': segments = a | b | c | d | e | f | g; break;
-    case '9': segments = a | b | c | d | f | g; break;
-    case '0': segments = a | b | c | d | e | f; break;
+    case 1: segments = b | c; break;
+    case 2: segments = a | b | d | e | g; break;
+    case 3: segments = a | b | c | d | g; break;
+    case 4: segments = f | g | b | c; break;
+    case 5: segments = a | f | g | c | d; break;
+    case 6: segments = a | f | g | e | c | d; break;
+    case 7: segments = a | b | c; break;
+    case 8: segments = a | b | c | d | e | f | g; break;
+    case 9: segments = a | b | c | d | f | g; break;
+    case 0: segments = a | b | c | d | e | f; break;
     case ' ': segments = 0; break;
     case 'a': segments = a | b | c | e | f | g; break;
     case 'b': segments = c | d | e | f | g; break;
@@ -213,7 +212,7 @@ void postChar(char digit, boolean decimal)
   }
 
   if (decimal) segments |= dp;
-
+  Serial.print("segments: ");
   Serial.println(segments);
 
   //Clock these bits out to the drivers
@@ -225,4 +224,3 @@ void postChar(char digit, boolean decimal)
   }
 
 }
-
